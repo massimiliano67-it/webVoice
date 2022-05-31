@@ -157,9 +157,10 @@
                     <!-- Page Heading -->
                     <div class="container">
                         <div class="container-fluid overflow-hidden">
-                        <iframe id = "idFrameAlert"  scrolling="yes" frameborder="0" allowfullscreen width="100%" height="800"></iframe>
-                    </div>
-                        
+                            <iframe id="idFrameAlert" scrolling="yes" frameborder="0" allowfullscreen width="100%"
+                                height="800"></iframe>
+                        </div>
+
                     </div>
 
                 </div>
@@ -221,29 +222,29 @@
 
 
     <script>
-        function GetParameter(param)
-        {
+        function GetParameter(param) {
             return new URLSearchParams(window.location.search).get(param)
 
         }
-        
-        
-        function GetIframeUrl()
-        {
 
 
-        
-        //console.log(GetParameter("Time"));    
-        var targetIframe = document.getElementById("idFrameAlert")
-        var url = "https://googledemo.looker.com/embed/dashboards/block_google_chronicle::rule_detections?Time=1+"
-        url = url + GetParameter("Time")
-        console.log(url)
-        targetIframe.src = url;
-    }
+        function GetIframeUrl() {
+
+
+
+            //console.log(GetParameter("Time"));    
+            var targetIframe = document.getElementById("idFrameAlert")
+            var url = "https://googledemo.looker.com/embed/dashboards/block_google_chronicle::rule_detections?Time=1+"
+            url = url + GetParameter("Time")
+            console.log(url)
+            targetIframe.src = url;
+        }
     </script>
 
     <script>
         //  $(document).ready(function () {
+        var lastSlotTime = ""
+
         function refresh() {
             var xhttp = new XMLHttpRequest();
 
@@ -255,16 +256,27 @@
                     var response = JSON.parse(xhttp.responseText);
                     var newValue = response.value;
                     var newSlotTime = response.slottime;
+                    if (lastSlotTime == "") {
+                        lastSlotTime = newSlotTime
+                    }
                     if (Boolean(newValue)) {
                         console.log(newValue);
-                            if(window.location.pathname.endsWith("cards.html") && newValue != "cards" ){
-                                 var newlink = 'https://webvoice-347112.web.app/'  + newValue;
-                                 newlink = newlink + '.html';
-                                 newlink = newlink + '?Time='  + newSlotTime;
-                                 console.log(newlink);
-                                 window.location.href = newlink;
-                                 console.log("newlink");
-                               }
+                        if (window.location.pathname.endsWith("cards.html") && newValue != "cards") {
+                            var newlink = 'https://webvoice-347112.web.app/' + newValue;
+                            newlink = newlink + '.html';
+                            newlink = newlink + '?Time=' + newSlotTime;
+                            console.log(newlink);
+                            window.location.href = newlink;
+                            console.log("newlink");
+                        } else if (lastSlotTime != newSlotTime) {
+                            newlink = 'https://webvoice-347112.web.app/' + newValue;
+                            newlink = newlink + '.html';
+                            newlink = newlink + '?Time=' + newSlotTime;
+                            console.log(newlink);
+                            window.location.href = newlink;
+                            console.log("newlink");
+                        }
+                        lastSlotTime = newSlotTime
                     }
 
 
@@ -277,7 +289,7 @@
  // }
  // )
 
-    </script> 
+    </script>
 
 </body>
 
