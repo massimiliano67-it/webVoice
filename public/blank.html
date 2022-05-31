@@ -260,6 +260,8 @@
 
     <script>
 
+        var lastSlotTime = ""
+
         function refresh() {
             var xhttp = new XMLHttpRequest();
 
@@ -272,17 +274,29 @@
                     console.log(response);
                     var newValue = response.value;
                     var newSlotTime = response.slottime;
+                    if(lastSlotTime == ""){
+                        lastSlotTime = newSlotTime
+                    }
                     if (Boolean(newValue)) {
                         console.log(newValue);
                         console.log(newSlotTime);
-                        if (window.location.pathname.endsWith("blank.html") && newValue != "blank") {
+                        console.log(lastSlotTime)
+                       if (window.location.pathname.endsWith("blank.html") && newValue != "blank") {
                             var newlink = 'https://webvoice-347112.web.app/' + newValue;
                             newlink = newlink + '.html';
                             newlink = newlink + '?Time='  + newSlotTime;
                             console.log(newlink);
                             window.location.href = newlink;
                             console.log("newlink");
+                        } else if(lastSlotTime != newSlotTime){
+                            newlink = 'https://webvoice-347112.web.app/' + newValue;
+                            newlink = newlink + '.html';
+                            newlink = newlink + '?Time='  + newSlotTime;
+                            console.log(newlink);
+                            window.location.href = newlink;
+                            console.log("newlink");
                         }
+                        lastSlotTime = newSlotTime
                     }
 
 
