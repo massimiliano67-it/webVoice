@@ -32,122 +32,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a id="card" class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a id="blankpage" class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -157,7 +42,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-            
+
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -166,9 +51,10 @@
                     <!-- Page Heading -->
                     <div class="container">
                         <div class="container-fluid overflow-hidden">
-                        <iframe id = "idFrame"  scrolling="yes" frameborder="0" allowfullscreen width="100%" height="800"></iframe>
-                    </div>
-                        
+                            <iframe id="idFrame" scrolling="yes" frameborder="0" allowfullscreen width="100%"
+                                height="800"></iframe>
+                        </div>
+
                     </div>
 
                 </div>
@@ -227,87 +113,109 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script type="module">
 
- 
-  
-        <script>
-            function GetParameter(param)
-            {
-                return new URLSearchParams(window.location.search).get(param)
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // import { getDatabase, ref, onValue} from 'firebase/database';
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-            }
-            
-            
-            function GetIframeUrl()
-            {
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBvfQ59Zhcz_acH0g_ezste3mav3tCOdw0",
+            authDomain: "webvoice-347112.firebaseapp.com",
+            projectId: "webvoice-347112",
+            storageBucket: "webvoice-347112.appspot.com",
+            messagingSenderId: "435721891291",
+            appId: "1:435721891291:web:4c7477283405d5d750cbfe"
+        };
 
 
-            
+        const app = initializeApp(firebaseConfig);
+
+        /*    const database = getDatabase(app);
+    
+            const starCountRef = ref(database, 'webvoice-347112/');
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+                console.log(data)
+            });*/
+
+
+    </script>
+
+
+    <script>
+        function GetParameter(param) {
+            return new URLSearchParams(window.location.search).get(param)
+
+        }
+
+
+        function GetIframeUrl(urlChange) {
             //console.log(GetParameter("Time"));    
             var targetIframe = document.getElementById("idFrame")
-            var url = "https://googledemo.looker.com/embed/dashboards/896?Time=1+"
-            url = url + GetParameter("Time")
+            var url = urlChange
             console.log(url)
             targetIframe.src = url;
         }
-        </script>
-
-    
-
-
-
-
+    </script>
+    <script type="module">
+    </script>
 
     <script>
 
         var lastSlotTime = ""
 
+
         function refresh() {
             var xhttp = new XMLHttpRequest();
 
-            xhttp.open("GET", "https://webvoice-347112-default-rtdb.firebaseio.com/page.json", true);
+            xhttp.open("GET", "https://webvoice-347112.firebaseio.com/page.json", true);
             xhttp.send();
             xhttp.addEventListener("readystatechange", processRequest, false);
             function processRequest(e) {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                     var response = JSON.parse(xhttp.responseText);
                     console.log(response);
-                    var newValue = response.value;
-                    var newSlotTime = response.slottime;
-                    if(lastSlotTime == ""){
-                        lastSlotTime = newSlotTime
-                    }
-                    if (Boolean(newValue)) {
-                        console.log(newValue);
-                        console.log(newSlotTime);
-                        console.log(lastSlotTime)
-                       if (window.location.pathname.endsWith("blank.html") && newValue != "blank") {
-                            var newlink = 'https://webvoice-347112.web.app/' + newValue;
-                            newlink = newlink + '.html';
-                            newlink = newlink + '?Time='  + newSlotTime;
-                            console.log(newlink);
-                            window.location.href = newlink;
-                            console.log("newlink");
-                        } else if(lastSlotTime != newSlotTime){
-                            newlink = 'https://webvoice-347112.web.app/' + newValue;
-                            newlink = newlink + '.html';
-                            newlink = newlink + '?Time='  + newSlotTime;
-                            console.log(newlink);
-                            window.location.href = newlink;
-                            console.log("newlink");
-                        }
-                        lastSlotTime = newSlotTime
-                    }
+                    var newValue = response.update;
+                    if(newValue == "Y"){
+                        xhttp.open("PATCH", "https://webvoice-347112.firebaseio.com/page.json", true);
+                        xhttp.send('{"update":"N"}');
+                        var product = response.product;
+                        var customer = response.customer;
+                        var location = response.city;
+                        var dateStart = response.startDate;
+                        var dateEnd = response.endDate;
 
+                        var urlNew = "https://googledemo.looker.com/embed/dashboards/1098?Product+Name="
+                        urlNew = urlNew + product;
+                        urlNew = urlNew + "&Customer=";
+                        urlNew = urlNew + customer;
+                        urlNew = urlNew + "&Ship+to+Location="
+                        urlNew = urlNew + location;
+                        urlNew = urlNew + "&Date+Range=";
+                        urlNew = urlNew + dateStart;
+                        urlNew = urlNew + "+to+";
+                        urlNew = urlNew + dateEnd;
+
+                        console.log(urlNew)
+
+                        
+                        GetIframeUrl(urlNew)
+
+                        //xhttp.addEventListener("readystatechange", processResponse, false);
+                    }
 
                 }
             }
             const timeoutId = setTimeout(refresh, 1000);
         }
         GetIframeUrl();
-
         refresh();
-    
+
     </script>
 
 
