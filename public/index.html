@@ -132,6 +132,14 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <script>
+        function GetIframeUrl(urlChange) {
+            //console.log(GetParameter("Time"));    
+            var targetIframe = document.getElementById("idFrame")
+            var url = urlChange
+            console.log(url)
+            targetIframe.src = url;
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const loadEl = document.querySelector('#load');
             // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
@@ -149,13 +157,29 @@
             //
             // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-            var dbref = firebase.database().ref().child('page/Update')
+            var dbref = firebase.database().ref().child('page/update')
             dbref.on('value', snap => {
-                console.log(snap.val())
+                console.log("-- Sanp Update --" + snap.val())
                 var dbrefall = firebase.database().ref()
                 dbrefall.child("page/").get().then((snapshot) => {
                     if (snapshot.exists()) {
-                        console.log(snapshot.val());
+                        console.log("-- snapshot Update --" + snapshot.val())
+
+                        var urlNew = "https://googledemo.looker.com/embed/dashboards/1098?Product+Name="
+                        urlNew = urlNew + snapshot.val().product;
+                        urlNew = urlNew + "&Customer=";
+                        urlNew = urlNew + snapshot.val().customer;
+                        urlNew = urlNew + "&Ship+to+Location="
+                        urlNew = urlNew + snapshot.val().city;
+                        urlNew = urlNew + "&Date+Range=";
+                        urlNew = urlNew + snapshot.val().startDate;
+                        urlNew = urlNew + "+to+";
+                        urlNew = urlNew + snapshot.val().endDate;
+
+                        console.log(urlNew)
+
+                        GetIframeUrl(urlNew)
+                
                     } else {
                         console.log("No data available");
                     }
@@ -201,7 +225,8 @@
             projectId: "webvoice-347112",
             storageBucket: "webvoice-347112.appspot.com",
             messagingSenderId: "435721891291",
-            appId: "1:435721891291:web:4c7477283405d5d750cbfe"
+            appId: "1:435721891291:web:4c7477283405d5d750cbfe",
+            databaseURL: "https://webvoice-347112.firebaseio.com/"
         };
 
         // Initialize Firebase
